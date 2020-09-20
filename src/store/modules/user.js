@@ -35,9 +35,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         commit('SET_TOKEN', response.data.token)
-        commit('SET_USERID', response.id)//add
+        commit('SET_USERID', response.data.id)
         setToken(response.data.token)
-        setUserId(response.id)
+        setUserId(response.data.id)
         resolve()
       }).catch(error => {
         reject(error)
@@ -99,25 +99,6 @@ const actions = {
     })
   },
 
-  // dynamically modify permissions
-  async changeRoles({ commit, dispatch }, role) {
-    const token = role + '-token'
-
-    commit('SET_TOKEN', token)
-    setToken(token)
-
-    const { roles } = await dispatch('getInfo')
-
-    resetRouter()
-
-    // generate accessible routes map based on roles
-    const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
-    // dynamically add accessible routes
-    router.addRoutes(accessRoutes)
-
-    // reset visited views and cached views
-    dispatch('tagsView/delAllViews', null, { root: true })
-  }
 }
 
 export default {
