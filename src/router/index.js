@@ -80,40 +80,52 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/guide',
+    path: '/host',
     component: Layout,
-    redirect: '/guide/index',
+    redirect: '/host/index',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
+        component: () => import('@/views/host/index'),
+        name: 'HOST配置',
         meta: { title: 'HOST配置', icon: 'guide', noCache: true }
       }
     ]
   },
   {
-    path: '/pdf',
+    path: '/mock',
     component: Layout,
-    redirect: '/pdf/index',
+    redirect: '/mock/index',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/pdf/index'),
-        name: 'PDF',
-        meta: { title: '在线MOCK', icon: 'pdf' }
+        component: () => import('@/views/mock/index'),
+        name: '在线MOCK',
+        meta: { title: '在线MOCK', icon: 'clipboard' }
       }
     ]
   },
   {
-    path: '/clipboard',
+    path: '/jsonlink',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/clipboard/index'),
-        name: 'ClipboardDemo',
+        component: () => import('@/views/jsonlink/index'),
+        name: 'JSON在线解析',
         meta: { title: 'JSON在线解析', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
+    path: '/markdown',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/markdown/index'),
+        name: 'Markdown编辑',
+        meta: { title: 'Markdown编辑', icon: 'clipboard' }
       }
     ]
   },
