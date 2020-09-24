@@ -13,12 +13,6 @@ const componentsRouter = {
   },
   children: [
     {
-      path: 'tinymce',
-      component: () => import('@/views/components-demo/tinymce'),
-      name: 'TinymceDemo',
-      meta: { title: 'Tinymce' }
-    },
-    {
       path: 'markdown',
       component: () => import('@/views/components-demo/markdown'),
       name: 'MarkdownDemo',
@@ -83,19 +77,8 @@ const componentsRouter = {
       component: () => import('@/views/components-demo/drag-select'),
       name: 'DragSelectDemo',
       meta: { title: 'Drag Select' }
-    },
-    {
-      path: 'dnd-list',
-      component: () => import('@/views/components-demo/dnd-list'),
-      name: 'DndListDemo',
-      meta: { title: 'Dnd List' }
-    },
-    {
-      path: 'drag-kanban',
-      component: () => import('@/views/components-demo/drag-kanban'),
-      name: 'DragKanbanDemo',
-      meta: { title: 'Drag Kanban' }
     }
+
   ]
 }
 
