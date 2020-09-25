@@ -1,15 +1,15 @@
 module.exports = {
-  title: 'Vue Element Admin',
+  title: '测试辅助工具平台',
 
   /**
    * @type {boolean} true | false
-   * @description Whether show the settings right-panel
+   * @description 右侧面板设置功能
    */
-  showSettings: true,
+  showSettings: false,
 
   /**
    * @type {boolean} true | false
-   * @description Whether need tagsView
+   * @description 上方导航栏
    */
   tagsView: true,
 
