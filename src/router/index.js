@@ -123,6 +123,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/consul',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/consul/index'),
+        name: 'Consul健康检查',
+        meta: { title: 'Consul健康检查', icon: 'clipboard' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
