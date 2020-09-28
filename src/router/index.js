@@ -126,12 +126,19 @@ export const constantRoutes = [
   {
     path: '/consul',
     component: Layout,
+    meta: { title: 'Consul', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'index',
         component: () => import('@/views/consul/index'),
-        name: 'Consul健康检查',
-        meta: { title: 'Consul健康检查', icon: 'clipboard' }
+        name: '健康检查',
+        meta: { title: '健康检查', icon: 'clipboard' }
+      },
+      {
+        path: 'add_task',
+        component: () => import('@/views/consul/add_task'),
+        name: '添加配置',
+        meta: { title: '添加配置', icon: 'clipboard' }
       }
     ]
   },

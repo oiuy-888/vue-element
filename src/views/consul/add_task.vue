@@ -1,6 +1,6 @@
 <template>
   <div>
-    <P><el-button type="button" @click="dialogFormVisible = true">新增mock配置</el-button></P>
+    <P><el-button type="button" @click="dialogFormVisible = true">增加配置</el-button></P>
     <el-table
       ref="table"
       :data="tableData"
