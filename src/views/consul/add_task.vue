@@ -1,66 +1,28 @@
 <template>
   <div>
     <P><el-button type="button" @click="dialogFormVisible = true">增加配置</el-button></P>
-    <el-table
-      ref="table"
-      :data="tableData"
-      tooltip-effect="dark"
-      border
-      stripe
-      style="width: 85%"
-    >
-      <el-table-column label="id" type="index" width="60" align="center" />
-      <el-table-column label="请求方法" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.method" />
-        </template>
-      </el-table-column>
-      <el-table-column label="响应延时" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.time" />
-        </template>
-      </el-table-column>
-      <el-table-column label="url路径" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.url" />
-        </template>
-      </el-table-column>
-      <el-table-column label="参数关键字" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.keyword" />
-        </template>
-      </el-table-column>
-      <el-table-column label="响应" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.respond" />
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" min-width="30%">
-        <template slot-scope="scope">
-          <el-button type="text" @click="delData(scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <el-dialog title="mock数据" :visible.sync="dialogFormVisible">
+    <el-dialog title="consul数据" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="url路径" :label-width="formLabelWidth">
-          <el-input v-model="form.url" autocomplete="off" placeholder="需要以/mock根路径起始" />
+        <el-form-item label="id" :label-width="formLabelWidth">
+          <el-input v-model="form.id" autocomplete="off" placeholder="id标识" />
         </el-form-item>
-        <el-form-item label="请求方式" :label-width="formLabelWidth">
-          <el-select v-model="form.method" placeholder="请选择活请求方式">
-            <el-option label="GET" value="GET" />
-            <el-option label="POST" value="POST" />
+        <el-form-item label="name" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off" placeholder="name名称" />
+        </el-form-item>
+        <el-form-item label="探针方式" :label-width="formLabelWidth">
+          <el-select v-model="form.method" placeholder="请选择探针方式">
+            <el-option label="TCP" value="tcp" />
+            <el-option label="ARGS" value="args" />
           </el-select>
         </el-form-item>
-        <el-form-item label="响应延迟" :label-width="formLabelWidth">
-          <el-input v-model="form.time" autocomplete="off" placeholder="延迟响应时间单位秒" />
+        <el-form-item label="value" :label-width="formLabelWidth">
+          <el-input v-model="form.value" autocomplete="off" placeholder="脚本配置" />
         </el-form-item>
-        <el-form-item label="参数关键字" :label-width="formLabelWidth">
-          <el-input v-model="form.keyword" autocomplete="off" placeholder="参数包含该关键字即响应预置结果" />
+        <el-form-item label="interval" :label-width="formLabelWidth">
+          <el-input v-model="form.interval" autocomplete="off" placeholder="探针心跳" />
         </el-form-item>
-        <el-form-item label="响应内容" :label-width="formLabelWidth">
-          <el-input v-model="form.respond" autocomplete="off" placeholder="请输入相应内容" />
+        <el-form-item label="timeout" :label-width="formLabelWidth">
+          <el-input v-model="form.timeout" autocomplete="off" placeholder="超时设定" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -69,11 +31,43 @@
       </div>
     </el-dialog>
 
+    <el-table
+      :data="tableData"
+      style="width: 100%"
+    >
+      <el-table-column
+        prop="uid"
+        label="id标识"
+        width="180"
+      />
+      <el-table-column
+        prop="name"
+        label="name名称"
+        width="180"
+      />
+      <el-table-column
+        prop="method"
+        label="探针方式"
+      />
+      <el-table-column
+        prop="value"
+        label="脚本配置"
+      />
+      <el-table-column
+        prop="interval"
+        label="探针心跳"
+      />
+      <el-table-column
+        prop="timeout"
+        label="超时设定"
+      />
+    </el-table>
+
   </div>
 </template>
 
 <script>
-import { getlsmock } from '@/api/qiniu'
+import { getconsul } from '@/api/qiniu'
 import { addlsmock } from '@/api/qiniu'
 import { dellsmock } from '@/api/qiniu'
 export default {
@@ -83,11 +77,12 @@ export default {
       formLabelWidth: '120px',
       dialogFormVisible: false,
       form: {
-        url: '',
+        id: '',
+        name: '',
         method: '',
-        time: '',
-        keyword: '',
-        respond: ''
+        value: '',
+        interval: '',
+        timeout: ''
       }
     }
   },
@@ -97,7 +92,7 @@ export default {
   methods: {
     // 获取数据
     getData() {
-      getlsmock().then(rsp => {
+      getconsul().then(rsp => {
         this.tableData = rsp.data
       })
     },

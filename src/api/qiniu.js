@@ -23,11 +23,11 @@ export function addhost(data) {
 }
 
 export function addlsmock(data) {
-    return request({
-      url: '/api/lsmock/addlsmock',
-      method: 'post',
-      data
-    })
+  return request({
+    url: '/api/lsmock/addlsmock',
+    method: 'post',
+    data
+  })
 }
 
 export function getlsmock() {
@@ -42,5 +42,12 @@ export function dellsmock(id) {
     url: '/api/lsmock/deletelsmock',
     method: 'get',
     params: { id }
+  })
+}
+
+export function getconsul() {
+  return request({
+    url: '/api/consul/findconsul',
+    method: 'get'
   })
 }

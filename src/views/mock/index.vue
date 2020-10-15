@@ -12,27 +12,29 @@
       <el-table-column label="id" type="index" width="60" align="center" />
       <el-table-column label="请求方法" align="center">
         <template slot-scope="scope">
-          <el-input v-model="scope.row.method" />
+          <el-input v-model="scope.row.method" disabled="true" />
         </template>
       </el-table-column>
       <el-table-column label="响应延时" align="center">
         <template slot-scope="scope">
-          <el-input v-model="scope.row.time" />
+          <el-input v-model="scope.row.time" disabled="true" />
         </template>
       </el-table-column>
       <el-table-column label="url路径" align="center">
         <template slot-scope="scope">
-          <el-input v-model="scope.row.url" />
+          <el-input v-model="scope.row.url" disabled="true" />
         </template>
       </el-table-column>
       <el-table-column label="参数关键字" align="center">
         <template slot-scope="scope">
-          <el-input v-model="scope.row.keyword" />
+          <el-input v-model="scope.row.keyword" disabled="true" />
         </template>
       </el-table-column>
       <el-table-column label="响应" align="center">
         <template slot-scope="scope">
-          <el-input v-model="scope.row.respond" />
+          <el-tooltip :content="scope.row.respond" placement="top">
+            <el-input v-model="scope.row.respond" disabled="true" />
+          </el-tooltip>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" min-width="30%">
@@ -48,7 +50,7 @@
           <el-input v-model="form.url" autocomplete="off" placeholder="需要以/mock根路径起始" />
         </el-form-item>
         <el-form-item label="请求方式" :label-width="formLabelWidth">
-          <el-select v-model="form.method" placeholder="请选择活请求方式">
+          <el-select v-model="form.method" placeholder="请选择请求方式">
             <el-option label="GET" value="GET" />
             <el-option label="POST" value="POST" />
           </el-select>
