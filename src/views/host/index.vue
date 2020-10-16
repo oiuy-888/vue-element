@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       tableData: [],
-      selectlistRow: [],
+      selectlistRow: []
     }
   },
   created() {
@@ -60,13 +60,13 @@ export default {
     },
     // 提交数据
     update() {
-      addhost(this.tableData).then( rsp => {
-//        this.$message(rsp.code +', '+rsp.data)
-        this.$message(rsp.data)
+      addhost(this.tableData).then(rsp => {
+        //        this.$message(rsp.code +', '+rsp.data)
+        this.$message(rsp.message)
         console.log(rsp)
-      }).catch( e =>
-        { console.info(e)
-        })
+      }).catch(e => {
+        console.info(e)
+      })
     },
     // 获取表格选中时的数据
     selectRow(val) {
@@ -98,7 +98,7 @@ export default {
         })
       }
       // 删除完数据之后清除勾s选框
-//      this.$refs.tableData.clearSelection()
+      //      this.$refs.tableData.clearSelection()
     }
   }
 }

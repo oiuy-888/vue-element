@@ -1,22 +1,16 @@
 import request from '@/utils/request'
 
-export function getToken() {
-  return request({
-    url: '/qiniu/upload/token', // 假地址 自行替换
-    method: 'get'
-  })
-}
 // add by ls
 export function gethost() {
   return request({
-    url: '/api/host/findhost',
+    url: '/back-end/host/findhost',
     method: 'get'
   })
 }
 
 export function addhost(data) {
   return request({
-    url: '/api/host/updatehost',
+    url: '/back-end/host/updatehost',
     method: 'post',
     data
   })
@@ -24,7 +18,7 @@ export function addhost(data) {
 
 export function addlsmock(data) {
   return request({
-    url: '/api/lsmock/addlsmock',
+    url: '/back-end/lsmock/addlsmock',
     method: 'post',
     data
   })
@@ -32,14 +26,14 @@ export function addlsmock(data) {
 
 export function getlsmock() {
   return request({
-    url: '/api/lsmock/findlsmock',
+    url: '/back-end/lsmock/findlsmock',
     method: 'get'
   })
 }
 
 export function dellsmock(id) {
   return request({
-    url: '/api/lsmock/deletelsmock',
+    url: '/back-end/lsmock/deletelsmock',
     method: 'get',
     params: { id }
   })
@@ -47,7 +41,23 @@ export function dellsmock(id) {
 
 export function getconsul() {
   return request({
-    url: '/api/consul/findconsul',
+    url: '/back-end/consul/findconsul',
     method: 'get'
+  })
+}
+
+export function addconsul(data) {
+  return request({
+    url: '/back-end/consul/addconsul',
+    method: 'post',
+    data
+  })
+}
+
+export function delconsul(id) {
+  return request({
+    url: '/back-end/consul/deleteconsul',
+    method: 'get',
+    params: { id }
   })
 }

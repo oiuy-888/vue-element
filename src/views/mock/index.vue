@@ -105,7 +105,7 @@ export default {
     },
     addData() {
       addlsmock(this.form).then(rsp => {
-        this.$message(rsp.data)
+        this.$message(rsp.message)
         this.getData() // 数据重加载
       }).catch(e => {
         console.info(e)
@@ -121,7 +121,7 @@ export default {
     },
     dellsmockData(id) {
       dellsmock(id).then(rsp => {
-        this.$message(rsp.data)
+        this.$message(rsp.message)
         this.getData()
       }).catch(e => {
         console.info(e)

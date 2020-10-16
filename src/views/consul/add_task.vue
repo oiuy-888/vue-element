@@ -68,8 +68,8 @@
 
 <script>
 import { getconsul } from '@/api/qiniu'
-import { addlsmock } from '@/api/qiniu'
-import { dellsmock } from '@/api/qiniu'
+import { addconsul } from '@/api/qiniu'
+import { delconsul } from '@/api/qiniu'
 export default {
   data() {
     return {
@@ -97,8 +97,8 @@ export default {
       })
     },
     addData() {
-      addlsmock(this.form).then(rsp => {
-        this.$message(rsp.data)
+      addconsul(this.form).then(rsp => {
+        this.$message(rsp.message)
         this.getData() // 数据重加载
       }).catch(e => {
         console.info(e)
@@ -113,8 +113,8 @@ export default {
         })
     },
     dellsmockData(id) {
-      dellsmock(id).then(rsp => {
-        this.$message(rsp.data)
+      delconsul(id).then(rsp => {
+        this.$message(rsp.message)
         this.getData()
       }).catch(e => {
         console.info(e)

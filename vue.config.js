@@ -33,12 +33,12 @@ module.exports = {
     port: port,
     open: true,
     proxy:{
-      "/api":{
+      "/back-end":{
         target:'http://127.0.0.1:8011',
         changeOrigin:true,
-        pathRewrite: {  // 重命名
-          '^/api': ''
-        }
+        //pathRewrite: {  // 重命名
+        //  '^/api': ''
+        //}
       }
     },
     overlay: {
