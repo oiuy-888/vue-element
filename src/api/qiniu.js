@@ -31,6 +31,22 @@ export function getlsmock() {
   })
 }
 
+export function selelsmock(id) {
+  return request({
+    url: '/back-end/lsmock/selelsmock',
+    method: 'get',
+    params: { id }
+  })
+}
+
+export function updatelsmock(data) {
+  return request({
+    url: '/back-end/lsmock/updatelsmock',
+    method: 'post',
+    data
+  })
+}
+
 export function dellsmock(id) {
   return request({
     url: '/back-end/lsmock/deletelsmock',

@@ -37,8 +37,9 @@
           </el-tooltip>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" min-width="30%">
+      <el-table-column label="操作" align="center" min-width="50%">
         <template slot-scope="scope">
+          <el-button type="text" @click="dialogFormVisible = true" @click.prevent="seleData(scope.row)">编辑</el-button>
           <el-button type="text" @click="delData(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -78,6 +79,9 @@
 import { getlsmock } from '@/api/qiniu'
 import { addlsmock } from '@/api/qiniu'
 import { dellsmock } from '@/api/qiniu'
+import { selelsmock } from '@/api/qiniu'
+import { updatelsmock } from '@/api/qiniu'
+
 export default {
   data() {
     return {
@@ -107,6 +111,20 @@ export default {
       addlsmock(this.form).then(rsp => {
         this.$message(rsp.message)
         this.getData() // 数据重加载
+      }).catch(e => {
+        console.info(e)
+      })
+    },
+    updateDate() {
+      updatelsmock(this.form).then(rsp =>{
+        this.get$message(rsp.message)
+      }).catch(e =>{
+        console.info(e)
+      })
+    },
+    seleData(index) {
+      selelsmock(index.id).then(rsp => {
+        this.form = rsp.data
       }).catch(e => {
         console.info(e)
       })
