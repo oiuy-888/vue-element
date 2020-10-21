@@ -88,6 +88,7 @@ export default {
       tableData: [],
       formLabelWidth: '120px',
       dialogFormVisible: false,
+      isEdit: false,
       form: {
         url: '',
         method: '',
@@ -108,21 +109,33 @@ export default {
       })
     },
     addData() {
+      if (this.isEdit) {
+        this.updateDate()
+      } else {
+        this.insertDate()
+      }
+    },
+    insertDate() {
       addlsmock(this.form).then(rsp => {
         this.$message(rsp.message)
-        this.getData() // 数据重加载
+        this.getData()         // 数据重加载
+        this.clearData()       // 清空编辑后残留的数据
       }).catch(e => {
         console.info(e)
       })
     },
     updateDate() {
-      updatelsmock(this.form).then(rsp =>{
-        this.get$message(rsp.message)
-      }).catch(e =>{
+      updatelsmock(this.form).then(rsp => {
+        this.$message(rsp.message)
+        this.getData()         // 数据重加载
+        this.clearData()       // 清空编辑后残留的数据
+        this.isEdit = false    // 重置编辑态
+      }).catch(e => {
         console.info(e)
       })
     },
     seleData(index) {
+      this.isEdit = true,
       selelsmock(index.id).then(rsp => {
         this.form = rsp.data
       }).catch(e => {
@@ -144,6 +157,15 @@ export default {
       }).catch(e => {
         console.info(e)
       })
+    },
+    clearData() {
+      this.form = {
+        url: '',
+        method: '',
+        time: '',
+        keyword: '',
+        respond: ''
+      }
     }
   }
 }

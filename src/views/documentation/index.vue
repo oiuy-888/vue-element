@@ -1,10 +1,16 @@
 <template>
   <div class="app-container documentation-container">
-    <a class="document-btn" target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/">Documentation</a>
-    <a class="document-btn" target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">Github Repository</a>
-    <a class="document-btn" target="_blank" href="https://blog.csdn.net/qq_37143673/article/details/88654823">国内论坛</a>
-    <dropdown-menu class="document-btn" :items="articleList" title="系列文章" />
-    <a class="document-btn" target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/zh/job/">内推招聘</a>
+    <a class="document-btn" target="_blank" href="http://jira.jd.com/">JIRA系统</a>
+    <a class="document-btn" target="_blank" href="https://cf.jd.com/pages/viewpage.action?pageId=248074199">CF知识管理平台</a>
+    <a class="document-btn" target="_blank" href="http://easytest.jd.com/HomeController/goHome">Easytest平台</a>
+    <a class="document-btn" target="_blank" href="http://itat.jd.com/">玲珑自动化</a>
+    <a class="document-btn" target="_blank" href="http://bossgzf.jd.com/#/web/personal/my">BigBoss工作台</a>
+    <a class="document-btn" target="_blank" href="https://joyspace.jd.com/">JoySpace平台</a>
+    <a class="document-btn" target="_blank" href="http://jagile.jd.com">行云</a>
+    <a class="document-btn" target="_blank" href="http://erp.jd.com">京东企业门户</a>
+    <dropdown-menu class="document-btn" :items="codingList" title="代码管理" />
+    <dropdown-menu class="document-btn" :items="articleList" title="JSF服务平台" />
+
   </div>
 </template>
 
@@ -17,15 +23,12 @@ export default {
   data() {
     return {
       articleList: [
-        { title: '基础篇', href: 'https://juejin.im/post/59097cd7a22b9d0065fb61d2' },
-        { title: '登录权限篇', href: 'https://juejin.im/post/591aa14f570c35006961acac' },
-        { title: '实战篇', href: 'https://juejin.im/post/593121aa0ce4630057f70d35' },
-        { title: 'vue-admin-template 篇', href: 'https://juejin.im/post/595b4d776fb9a06bbe7dba56' },
-        { title: 'v4.0 篇', href: 'https://juejin.im/post/5c92ff94f265da6128275a85' },
-        { title: '自行封装 component', href: 'https://segmentfault.com/a/1190000009090836' },
-        { title: '优雅的使用 icon', href: 'https://juejin.im/post/59bb864b5188257e7a427c09' },
-        { title: 'webpack4（上）', href: 'https://juejin.im/post/59bb864b5188257e7a427c09' },
-        { title: 'webpack4（下）', href: 'https://juejin.im/post/5b5d6d6f6fb9a04fea58aabc' }
+        { title: '测试环境', href: 'http://test.jsf.jd.com/' },
+        { title: '生产环境', href: 'http://jsf.jd.com/' }
+      ],
+      codingList: [
+        { title: 'GitLab', href: 'https://git.jd.com/' },
+        { title: 'Coding', href: 'http://coding.jd.com/' }
       ]
     }
   }
@@ -43,7 +46,7 @@ export default {
     flex-shrink: 0;
     display: block;
     cursor: pointer;
-    background: red;
+    background: blue;
     color: white;
     height: 60px;
     width: 200px;
