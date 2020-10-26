@@ -1,51 +1,91 @@
 <template>
   <div class="tableDate">
-    <div class="button" style="width:13%;float:right;">
-      <P><el-button class="el-icon-plus" @click.prevent="addRow()" /></P>
-      <p><el-button class="el-icon-minus" @click.prevent="delData()" /></p>
-      <p><el-button style="width:70px" align="center" @click.prevent="update()">确定</el-button></p>
-    </div>
     <div class="table">
       <el-table
-        ref="table"
-        :data="tableData"
-        tooltip-effect="dark"
-        border
-        stripe
-        style="width: 85%"
-        @selection-change="selectRow"
+        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        style="width: 100%"
       >
-        <el-table-column type="selection" width="45" align="center" />
-        <el-table-column label="序号" type="index" width="60" align="center" />
-        <el-table-column label="应用" align="center">
-          <template slot-scope="scope">
-            <el-input v-model="scope.row.name" />
+        <el-table-column
+          label="Host"
+          prop="host"
+        />
+        <el-table-column
+          label="Name"
+          prop="name"
+        />
+        <el-table-column
+          label="备注"
+          prop="remark"
+        />
+        <el-table-column
+          align="right"
+        >
+          <template slot="header" slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="dialogFormVisible = true"
+              @click.prevent="clearData()"
+            >新建</el-button>
           </template>
-        </el-table-column>
-        <el-table-column label="host信息" align="center">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.host" />
-          </template>
-        </el-table-column>
-        <el-table-column label="备注" align="center">
-          <template slot-scope="scope">
-            <el-input v-model="scope.row.remark" />
+            <el-button
+              size="mini"
+              @click="dialogFormVisible = true"
+              @click.prevent="seleData(scope.$index, scope.row)"
+            >Edit</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="delDate(scope.$index, scope.row)"
+            >Delete</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
+
+    <el-dialog title="HOST配置" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="host" :label-width="formLabelWidth">
+          <el-input v-model="form.host" autocomplete="off" placeholder="配置信息" />
+        </el-form-item>
+        <el-form-item label="name" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off" placeholder="系统名称" />
+        </el-form-item>
+        <el-form-item label="createruser" :label-width="formLabelWidth">
+          <el-input v-model="form.createruser" autocomplete="off" placeholder="创建人" />
+        </el-form-item>
+        <el-form-item label="remark" :label-width="formLabelWidth">
+          <el-input v-model="form.remark" autocomplete="off" placeholder="备注" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false" @click.prevent="addData()">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { gethost } from '@/api/qiniu'
 import { addhost } from '@/api/qiniu'
+import { delhost } from '@/api/qiniu'
+import { updatehost } from '@/api/qiniu'
+import { selehost } from '@/api/qiniu'
 
 export default {
   data() {
     return {
       tableData: [],
-      selectlistRow: []
+      formLabelWidth: '120px',
+      dialogFormVisible: false,
+      isEdit: false,
+      form: {
+        host: '',
+        name: '',
+        remark: '',
+        createruser: ''
+      }
     }
   },
   created() {
@@ -58,47 +98,63 @@ export default {
         this.tableData = rsp.data
       })
     },
-    // 提交数据
-    update() {
-      addhost(this.tableData).then(rsp => {
-        //        this.$message(rsp.code +', '+rsp.data)
+    addData() {
+      if (this.isEdit) {
+        this.updateDate()
+      } else {
+        this.insertDate()
+      }
+    },
+    insertDate() {
+      addhost(this.form).then(rsp => {
         this.$message(rsp.message)
-        console.log(rsp)
+        this.getData() // 数据重加载
+        this.clearData() // 清空编辑后残留的数据
       }).catch(e => {
         console.info(e)
       })
     },
-    // 获取表格选中时的数据
-    selectRow(val) {
-      this.selectlistRow = val
+    seleData(index, row) {
+      this.isEdit = true
+      selehost(row.id).then(rsp => {
+        this.form = rsp.data
+      }).catch(e => {
+        console.info(e)
+      })
     },
-    // 增加行
-    addRow() {
-      var list = {
-        name: this.name,
-        host: this.host,
-        remark: this.remark }
-      this.tableData.unshift(list)
+    updateDate() {
+      updatehost(this.form).then(rsp => {
+        this.$message(rsp.message)
+        this.getData() // 数据重加载
+        this.clearData() // 清空编辑后残留的数据，也可以不处理
+      }).catch(e => {
+        console.info(e)
+      })
     },
-    // 删除方法
-    // 删除选中行
-    delData() {
-      for (let i = 0; i < this.selectlistRow.length; i++) {
-        const val = this.selectlistRow
-        // 获取选中行的索引的方法
-        // 遍历表格中tableData数据和选中的val数据，比较它们的id,相等则输出选中行的索引
-        // id的作用主要是为了让每一行有一个唯一的数据，方便比较，可以根据个人的开发需求从后台传入特定的数据
-        val.forEach((val, index) => {
-          this.tableData.forEach((v, i) => {
-            if (val.id === v.id) {
-              // i 为选中的索引
-              this.tableData.splice(i, 1)
-            }
-          })
+    delDate(index, row) {
+      this.$confirm('确认删除?', '提示')
+        .then(_ => {
+          this.deletehost(row.id)
         })
+        .catch(_ => {
+        })
+    },
+    deletehost(id) {
+      delhost(id).then(rsp => {
+        this.$message(rsp.message)
+        this.getData()
+      }).catch(e => {
+        console.info(e)
+      })
+    },
+    clearData() {
+      this.isEdit = false
+      this.form = {
+        host: '',
+        name: '',
+        remark: '',
+        createruser: ''
       }
-      // 删除完数据之后清除勾s选框
-      //      this.$refs.tableData.clearSelection()
     }
   }
 }

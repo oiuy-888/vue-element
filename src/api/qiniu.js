@@ -10,9 +10,33 @@ export function gethost() {
 
 export function addhost(data) {
   return request({
+    url: '/back-end/host/addhost',
+    method: 'post',
+    data
+  })
+}
+
+export function delhost(id) {
+  return request({
+    url: '/back-end/host/deletehost',
+    method: 'get',
+    params: { id }
+  })
+}
+
+export function updatehost(data) {
+  return request({
     url: '/back-end/host/updatehost',
     method: 'post',
     data
+  })
+}
+
+export function selehost(id) {
+  return request({
+    url: '/back-end/host/findHost',
+    method: 'get',
+    params: { id }
   })
 }
 

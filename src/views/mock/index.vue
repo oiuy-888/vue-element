@@ -1,6 +1,6 @@
 <template>
   <div>
-    <P><el-button type="button" @click="dialogFormVisible = true">新增mock配置</el-button></P>
+    <P><el-button type="button" @click="dialogFormVisible = true" @click.prevent="clearData()">新增mock配置</el-button></P>
     <el-table
       ref="table"
       :data="tableData"
@@ -118,8 +118,8 @@ export default {
     insertDate() {
       addlsmock(this.form).then(rsp => {
         this.$message(rsp.message)
-        this.getData()         // 数据重加载
-        this.clearData()       // 清空编辑后残留的数据
+        this.getData() // 数据重加载
+        this.clearData() // 清空编辑后残留的数据
       }).catch(e => {
         console.info(e)
       })
@@ -127,15 +127,14 @@ export default {
     updateDate() {
       updatelsmock(this.form).then(rsp => {
         this.$message(rsp.message)
-        this.getData()         // 数据重加载
-        this.clearData()       // 清空编辑后残留的数据
-        this.isEdit = false    // 重置编辑态
+        this.getData() // 数据重加载
+        this.clearData() // 清空编辑后残留的数据
       }).catch(e => {
         console.info(e)
       })
     },
     seleData(index) {
-      this.isEdit = true,
+      this.isEdit = true
       selelsmock(index.id).then(rsp => {
         this.form = rsp.data
       }).catch(e => {
@@ -159,6 +158,7 @@ export default {
       })
     },
     clearData() {
+      this.isEdit = false
       this.form = {
         url: '',
         method: '',
