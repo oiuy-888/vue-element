@@ -3,11 +3,15 @@
     <div class="table">
       <el-table
         :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        border="true"
         style="width: 100%"
       >
         <el-table-column
           label="Host"
           prop="host"
+          resizable
+          :show-tooltip-when-overflow="true"
+          min-width="120%"
         />
         <el-table-column
           label="Name"
@@ -16,9 +20,12 @@
         <el-table-column
           label="备注"
           prop="remark"
+          show-tooltip-when-overflow="true"
+          min-width="30%"
         />
         <el-table-column
           align="right"
+          min-width="35%"
         >
           <template slot="header" slot-scope="scope">
             <el-button
