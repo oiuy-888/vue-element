@@ -16,6 +16,7 @@
         <el-table-column
           label="Name"
           prop="name"
+          min-width="30%"
         />
         <el-table-column
           label="备注"
@@ -24,7 +25,7 @@
           min-width="30%"
         />
         <el-table-column
-          align="right"
+          align="center"
           min-width="35%"
         >
           <template slot="header" slot-scope="scope">

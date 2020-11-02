@@ -9,7 +9,6 @@ export default {
   data() {
     return {
       chartColumn: null
-
     }
   },
   mounted() {
@@ -20,35 +19,46 @@ export default {
       this.chartColumn = echarts.init(document.getElementById('chartColumn'))
 
       this.chartColumn.setOption({
-        title: { text: '京东物流' },
-        backgroundColor: '#000',
-        globe: {
-          baseTexture: 'https://echarts.apache.org/examples/data-gl/asset/world.topo.bathy.200401.jpg',
-          heightTexture: 'https://echarts.apache.org/examples/data-gl/asset/bathymetry_bw_composite_4k.jpg',
-          shading: 'lambert',
-          light: {
-            ambient: {
-              intensity: 0.4
-            },
-            main: {
-              intensity: 0.4
-            }
-          },
-          viewControl: {
-            autoRotate: false
-          }
+        title: {
+            text: '京东物流',
+            left: 'center'
         },
-        series: {
-          type: 'lines3D',
-          coordinateSystem: 'globe',
-          blendMode: 'lighter',
-          lineStyle: {
-            width: 1,
-            color: 'rgb(50, 50, 150)',
-            opacity: 0.1
-          },
-          data: routes
-        }
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['Host', 'Mock', 'Consul']
+        },
+        series: [
+            {
+                name: '平台数据',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 3, name: 'Host'},
+                    {value: 5, name: 'Mock'},
+                    {value: 12, name: 'Consul'}
+                ]
+            }
+        ]
       })
     }
   }

@@ -118,8 +118,8 @@ export const constantRoutes = [
       {
         path: 'index',
         component: () => import('@/views/markdown/index'),
-        name: 'Markdown编辑',
-        meta: { title: 'Markdown编辑', icon: 'clipboard' }
+        name: 'Markdown预览',
+        meta: { title: 'Markdown预览', icon: 'clipboard' }
       }
     ]
   },
@@ -142,7 +142,18 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+      path: '/testsuit',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          component: () => import('@/views/testsuit/index'),
+          name: '测试用例集',
+          meta: { title: '测试用例集', icon: 'clipboard' }
+        }
+      ]
+    },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
