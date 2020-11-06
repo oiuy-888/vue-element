@@ -11,7 +11,7 @@ module.exports = {
    * @type {boolean} true | false
    * @description 上方导航栏
    */
-  tagsView: true,
+  tagsView: false,
 
   /**
    * @type {boolean} true | false

@@ -126,6 +126,7 @@ export const constantRoutes = [
   {
     path: '/consul',
     component: Layout,
+    redirect: 'noRedirect',
     meta: { title: 'Consul', icon: 'el-icon-s-help' },
     children: [
       {
@@ -143,17 +144,33 @@ export const constantRoutes = [
     ]
   },
   {
-      path: '/testsuit',
-      component: Layout,
-      children: [
-        {
-          path: 'index',
-          component: () => import('@/views/testsuit/index'),
-          name: '测试用例集',
-          meta: { title: '测试用例集', icon: 'clipboard' }
-        }
-      ]
-    },
+    path: '/testManager',
+    component: Layout,
+    redirect: 'noRedirect',
+    meta: { title: '测试用例', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/testManager/index'),
+        name: '测试用例集',
+        meta: { title: '测试用例集', icon: 'clipboard' }
+      },
+      {
+        path: 'addplug',
+        hidden: true,
+        component: () => import('@/views/testManager/addplug'),
+        name: '添加插件',
+        meta: { title: '添加插件', icon: 'clipboard' }
+      },
+      {
+        path: 'addplugsuccess',
+        hidden: true,
+        component: () => import('@/views/testManager/addplugsuccess'),
+        name: '添加完成',
+        meta: { title: '添加完成', icon: 'clipboard' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
