@@ -151,21 +151,21 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/testManager/index'),
+        component: () => import('@/views/testManager/testsuit/index'),
         name: '测试用例集',
         meta: { title: '测试用例集', icon: 'clipboard' }
       },
       {
         path: 'addplug',
         hidden: true,
-        component: () => import('@/views/testManager/addplug'),
+        component: () => import('@/views/testManager/testsuit/addplug'),
         name: '添加插件',
         meta: { title: '添加插件', icon: 'clipboard' }
       },
       {
         path: 'addplugsuccess',
         hidden: true,
-        component: () => import('@/views/testManager/addplugsuccess'),
+        component: () => import('@/views/testManager/testsuit/addplugsuccess'),
         name: '添加完成',
         meta: { title: '添加完成', icon: 'clipboard' }
       }

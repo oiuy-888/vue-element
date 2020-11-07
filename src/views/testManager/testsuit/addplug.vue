@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       tableData: [],
-      active: 0
+      active: 1
     }
   },
   created() {
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     next() {
-      this.$router.push({path: '/testsuit/addplug'})
+      this.$router.push({path: '/testManager/addplugsuccess'})
       if (this.active++ > 2) this.active = 0;
     }
   }
