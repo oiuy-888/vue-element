@@ -1,29 +1,30 @@
 <template>
   <div class="tableDate">
-    <el-steps :active="active" finish-status="success">
-      <el-step title="步骤 1"></el-step>
-      <el-step title="步骤 2"></el-step>
-      <el-step title="步骤 3"></el-step>
-    </el-steps>
+    <steps v-bind="stepsObj"/>
     <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
   </div>
 </template>
 
 <script>
+import steps from "@/components/steps";
 
 export default {
+  components: {
+    steps
+  },
   data() {
     return {
       tableData: [],
-      active: 2
+      stepsObj:{
+        active: 0,
+        title:'创建插件',
+        tiptitle:['选择插件类型','填写信息','完成']
+      },
     }
-  },
-  created() {
-    this.getData()
   },
   methods: {
     next() {
-      this.$router.push({path: '/testManager/index'})
+      this.$router.push({path: '/testManager/addplug'})
       if (this.active++ > 2) this.active = 0;
     }
   }

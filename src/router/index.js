@@ -137,6 +137,7 @@ export const constantRoutes = [
       },
       {
         path: 'add_task',
+        hidden: true,
         component: () => import('@/views/consul/add_task'),
         name: '添加配置',
         meta: { title: '添加配置', icon: 'clipboard' }
@@ -150,25 +151,44 @@ export const constantRoutes = [
     meta: { title: '测试用例', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'index',
+        path: 'testsuit/index',
         component: () => import('@/views/testManager/testsuit/index'),
         name: '测试用例集',
         meta: { title: '测试用例集', icon: 'clipboard' }
       },
       {
-        path: 'addplug',
+        path: 'testcase/index',
+        component: () => import('@/views/testManager/testcase/index'),
+        name: '测试脚本集',
+        meta: { title: '测试脚本集', icon: 'clipboard' }
+      },
+      {
+        path: 'testplug/index',
+        component: () => import('@/views/testManager/testplug/index'),
+        name: '测试插件集',
+        meta: { title: '测试插件集', icon: 'clipboard' }
+      },
+      {
+        path: 'addplugone',
         hidden: true,
-        component: () => import('@/views/testManager/testsuit/addplug'),
+        component: () => import('@/views/testManager/testplug/addplugone'),
         name: '添加插件',
         meta: { title: '添加插件', icon: 'clipboard' }
       },
       {
-        path: 'addplugsuccess',
+        path: 'addplugtwo',
         hidden: true,
-        component: () => import('@/views/testManager/testsuit/addplugsuccess'),
-        name: '添加完成',
-        meta: { title: '添加完成', icon: 'clipboard' }
-      }
+        component: () => import('@/views/testManager/testplug/addplugtwo'),
+        name: '添加插件',
+        meta: { title: '添加插件', icon: 'clipboard' }
+      },
+      {
+        path: 'addplugthree',
+        hidden: true,
+        component: () => import('@/views/testManager/testplug/addplugthree'),
+        name: '添加插件',
+        meta: { title: '添加插件', icon: 'clipboard' }
+      },
     ]
   },
   // 404 page must be placed at the end !!!
