@@ -1,9 +1,9 @@
 <template>
   <div class="tableDate">
-    <el-container style="height: 700px; border: 5px solid #eee">
+    <el-container style="height: 100%; border: 5px solid #eee;">
       <el-header align="center">插件选型</el-header>
       <el-main>
-        <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+        <el-button style="margin-top: 40px;" @click="next">下一步</el-button>
       </el-main>
       <el-footer align="center">插件类型问题，可查阅cf文档</el-footer>
     </el-container>

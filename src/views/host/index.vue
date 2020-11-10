@@ -44,7 +44,7 @@
             <el-button
               size="mini"
               type="danger"
-              @click="delDate(scope.$index, scope.row)"
+              @click="delData(scope.$index, scope.row)"
             >Delete</el-button>
           </template>
         </el-table-column>
@@ -108,7 +108,7 @@ export default {
     },
     addData() {
       if (this.isEdit) {
-        this.updateDate()
+        this.updateData()
       } else {
         this.insertDate()
       }
@@ -130,7 +130,7 @@ export default {
         console.info(e)
       })
     },
-    updateDate() {
+    updateData() {
       updatehost(this.form).then(rsp => {
         this.$message(rsp.message)
         this.getData() // 数据重加载
@@ -139,7 +139,7 @@ export default {
         console.info(e)
       })
     },
-    delDate(index, row) {
+    delData(index, row) {
       this.$confirm('确认删除?', '提示')
         .then(_ => {
           this.deletehost(row.id)

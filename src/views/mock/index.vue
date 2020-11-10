@@ -1,49 +1,58 @@
 <template>
-  <div>
-    <P><el-button type="button" @click="dialogFormVisible = true" @click.prevent="clearData()">新增mock配置</el-button></P>
-    <el-table
-      ref="table"
-      :data="tableData"
-      tooltip-effect="dark"
-      border
-      stripe
-      style="width: 85%"
-    >
-      <el-table-column label="id" type="index" width="60" align="center" />
-      <el-table-column label="请求方法" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.method" disabled="true" />
-        </template>
-      </el-table-column>
-      <el-table-column label="响应延时" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.time" disabled="true" />
-        </template>
-      </el-table-column>
-      <el-table-column label="url路径" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.url" disabled="true" />
-        </template>
-      </el-table-column>
-      <el-table-column label="参数关键字" align="center">
-        <template slot-scope="scope">
-          <el-input v-model="scope.row.keyword" disabled="true" />
-        </template>
-      </el-table-column>
-      <el-table-column label="响应" align="center">
-        <template slot-scope="scope">
-          <el-tooltip :content="scope.row.respond" placement="top">
-            <el-input v-model="scope.row.respond" disabled="true" />
-          </el-tooltip>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" min-width="50%">
-        <template slot-scope="scope">
-          <el-button type="text" @click="dialogFormVisible = true" @click.prevent="seleData(scope.row)">编辑</el-button>
-          <el-button type="text" @click="delData(scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+  <div class="tableDate">
+    <div class="table">
+      <el-table
+        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        border="true"
+        style="width: 100%"
+      >
+        <el-table-column
+          label="请求方法"
+          prop="method"
+        />
+        <el-table-column
+          label="响应延时"
+          prop="time"
+        />
+        <el-table-column
+          label="url路径"
+          prop="url"
+        />
+        <el-table-column
+          label="参数关键字"
+          prop="keyword"
+        />
+        <el-table-column
+          label="响应"
+          prop="respond"
+          :show-tooltip-when-overflow="true"
+        />
+        <el-table-column
+          align="center"
+          min-width="50%"
+        >
+          <template slot="header" slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="dialogFormVisible = true"
+              @click.prevent="clearData()"
+            >新建</el-button>
+          </template>
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="dialogFormVisible = true"
+              @click.prevent="seleData(scope.$index, scope.row)"
+            >Edit</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="delData(scope.$index, scope.row)"
+            >Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
     <el-dialog title="mock数据" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -71,103 +80,14 @@
         <el-button type="primary" @click="dialogFormVisible = false" @click.prevent="addData()">确 定</el-button>
       </div>
     </el-dialog>
-
   </div>
 </template>
 
 <script>
-import { getlsmock } from '@/api/qiniu'
-import { addlsmock } from '@/api/qiniu'
-import { dellsmock } from '@/api/qiniu'
-import { selelsmock } from '@/api/qiniu'
-import { updatelsmock } from '@/api/qiniu'
+import MockComponent from './index.js'
 
 export default {
-  data() {
-    return {
-      tableData: [],
-      formLabelWidth: '120px',
-      dialogFormVisible: false,
-      isEdit: false,
-      form: {
-        url: '',
-        method: '',
-        time: '',
-        keyword: '',
-        respond: ''
-      }
-    }
-  },
-  created() {
-    this.getData()
-  },
-  methods: {
-    // 获取数据
-    getData() {
-      getlsmock().then(rsp => {
-        this.tableData = rsp.data
-      })
-    },
-    addData() {
-      if (this.isEdit) {
-        this.updateDate()
-      } else {
-        this.insertDate()
-      }
-    },
-    insertDate() {
-      addlsmock(this.form).then(rsp => {
-        this.$message(rsp.message)
-        this.getData() // 数据重加载
-        this.clearData() // 清空编辑后残留的数据
-      }).catch(e => {
-        console.info(e)
-      })
-    },
-    updateDate() {
-      updatelsmock(this.form).then(rsp => {
-        this.$message(rsp.message)
-        this.getData() // 数据重加载
-        this.clearData() // 清空编辑后残留的数据
-      }).catch(e => {
-        console.info(e)
-      })
-    },
-    seleData(index) {
-      this.isEdit = true
-      selelsmock(index.id).then(rsp => {
-        this.form = rsp.data
-      }).catch(e => {
-        console.info(e)
-      })
-    },
-    delData(index) {
-      this.$confirm('确认删除?', '提示')
-        .then(_ => {
-          this.dellsmockData(index.id)
-        })
-        .catch(_ => {
-        })
-    },
-    dellsmockData(id) {
-      dellsmock(id).then(rsp => {
-        this.$message(rsp.message)
-        this.getData()
-      }).catch(e => {
-        console.info(e)
-      })
-    },
-    clearData() {
-      this.isEdit = false
-      this.form = {
-        url: '',
-        method: '',
-        time: '',
-        keyword: '',
-        respond: ''
-      }
-    }
-  }
+...MockComponent
 }
 </script>
 
