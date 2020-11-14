@@ -2,10 +2,16 @@
   <div class="tableDate">
     <div class="table">
       <el-table
-        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        :data="tableData"
         border="true"
         style="width: 100%"
       >
+        <el-table-column
+          label="序号"
+          type="index"
+          align="center"
+          width="50"
+        />
         <el-table-column
           label="请求方法"
           prop="method"
@@ -29,7 +35,7 @@
         />
         <el-table-column
           align="center"
-          min-width="50%"
+          width="155"
         >
           <template slot="header" slot-scope="scope">
             <el-button
@@ -84,10 +90,11 @@
 </template>
 
 <script>
-import MockComponent from './index.js'
+import MockComponent from './mock.js'
 
 export default {
-...MockComponent
+  ...MockComponent
 }
+
 </script>
 
