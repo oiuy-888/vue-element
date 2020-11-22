@@ -3,7 +3,7 @@
     <div class="table">
       <el-table
         :data="tableData"
-        border="true"
+        :border="true"
         style="width: 100%"
       >
         <el-table-column
@@ -27,7 +27,7 @@
         <el-table-column
           label="备注"
           prop="remark"
-          show-tooltip-when-overflow="true"
+          :show-tooltip-when-overflow="true"
           min-width="30%"
         />
         <el-table-column

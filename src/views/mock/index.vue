@@ -3,7 +3,7 @@
     <div class="table">
       <el-table
         :data="tableData"
-        border="true"
+        :border="true"
         style="width: 100%"
       >
         <el-table-column
@@ -33,6 +33,14 @@
           prop="respond"
           :show-tooltip-when-overflow="true"
         />
+        <el-table-column
+          label="数据使用方式"
+          prop="method,url,respond"
+          :show-tooltip-when-overflow="true">
+          <template slot-scope="scope">
+            使用{{scope.row.method}}方式，携带包含关键字{{scope.row.keyword}}的参数，请求{HOST:PORT}/mock{{scope.row.url}}会收到响应内容{{scope.row.respond}}
+          </template>
+        </el-table-column>
         <el-table-column
           align="center"
           width="155"

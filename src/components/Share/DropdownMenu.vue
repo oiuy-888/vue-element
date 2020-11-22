@@ -49,8 +49,8 @@ $t: .1s;
     width: 100%;
     display: block;
     cursor: pointer;
-    background: black;
-    color: white;
+    background: white;
+    color: black;
     height: 60px;
     line-height: 60px;
     font-size: 20px;
@@ -65,7 +65,7 @@ $t: .1s;
     text-align: center;
     position: absolute;
     width: 100%;
-    background: #e0e0e0;
+    background: white;
     color: #000;
     line-height: 60px;
     height: 60px;
@@ -75,8 +75,8 @@ $t: .1s;
     opacity: 1;
     transition: transform 0.28s ease;
     &:hover {
-      background: black;
-      color: white;
+      background: white;
+      color: #8c939d;
     }
     @for $i from 1 through $n {
       &:nth-of-type(#{$i}) {

@@ -46,8 +46,8 @@ export default {
     flex-shrink: 0;
     display: block;
     cursor: pointer;
-    background: blue;
-    color: white;
+    background: #ffffff;
+    color: black;
     height: 60px;
     width: 200px;
     margin-bottom: 16px;

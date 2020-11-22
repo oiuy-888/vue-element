@@ -11,7 +11,7 @@
 
 <script>
 import steps from '@/components/steps'
-import bg from '@/icons/images/bg.jpeg'
+import bg from '@/assets/images/bg.jpeg'
 
 export default {
   components: {
