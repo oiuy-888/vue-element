@@ -4,18 +4,22 @@
     <div class="text-desc">
       选择插件类型并自定义名称
     </div>
-    <el-form :model="formInline" class="demo-form-inline">
-      <el-form-item label="审批人">
-        <el-input v-model="formInline.user" style="width:30%;" placeholder="审批人" />
+    <el-form :model="formInline" label-width="500px" class="plug-form">
+      <el-form-item label="插件名称">
+        <el-input v-model="formInline.user" style="width:30%;" placeholder="" />
       </el-form-item>
-      <el-form-item label="活动区域">
-        <el-select v-model="formInline.region" placeholder="活动区域">
-          <el-option label="区域一" value="shanghai" />
-          <el-option label="区域二" value="beijing" />
+      <el-form-item label="插件类型">
+        <el-select v-model="formInline.region" placeholder="">
+          <el-option label="发送请求" value="shanghai" />
+          <el-option label="提取字段" value="beijing" />
+          <el-option label="结果断言" value="beijing" />
+          <el-option label="自定义参数" value="beijing" />
         </el-select>
       </el-form-item>
     </el-form>
-    <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+    <div style="text-align: center">
+      <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+    </div>
   </div>
 </template>
 
@@ -54,6 +58,6 @@ export default {
   font-size: 20px;
 }
 .plug-form {
-
+  margin-top: 40px;
 }
 </style>

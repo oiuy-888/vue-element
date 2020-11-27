@@ -3,7 +3,9 @@
     <el-container style="height: 100%; border: 5px solid #eee;">
       <el-header align="center">插件选型列表</el-header>
       <el-main>
-        <el-button style="margin-top: 40px;" @click="next">创建插件</el-button>
+        <div style="text-align: center">
+          <el-button style="margin-top: 40px;" @click="next">创建插件</el-button>
+        </div>
       </el-main>
       <el-footer class="footer-font-size">插件类型问题，可查阅cf文档</el-footer>
     </el-container>
