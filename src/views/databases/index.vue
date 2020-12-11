@@ -3,7 +3,7 @@
     <div align="center">
       <el-button @click="getDatabases()">查库</el-button>
     </div>
-      <el-cascader :options="tableDate" clearable></el-cascader>
+    <el-cascader :options="tableDate" clearable />
   </div>
 </template>
 

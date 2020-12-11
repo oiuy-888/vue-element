@@ -202,7 +202,7 @@ export const constantRoutes = [
         component: () => import('@/views/testManager/testplug/addplugthree'),
         name: '添加插件',
         meta: { title: '添加插件', icon: 'clipboard' }
-      },
+      }
     ]
   },
   // 404 page must be placed at the end !!!
