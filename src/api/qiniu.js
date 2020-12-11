@@ -101,3 +101,13 @@ export function delconsul(id) {
     params: { id }
   })
 }
+
+export function getdatabases(data) {
+  return request({
+    url: '/back-end/sql/bases',
+    method: 'post',
+    data
+  })
+}
+
+

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <iframe id="mobsf" src="http://10.170.222.64:8500/ui/dc1/services" frameborder="0" style="position:absolute;" />
+    <iframe id="mobsf" src="http://10.170.223.148:8500/ui/dc1/services" frameborder="0" style="position:absolute;" />
   </div>
 </template>
 

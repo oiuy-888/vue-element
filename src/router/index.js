@@ -95,7 +95,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/mock/index'),
         name: '在线MOCK',
-        meta: { title: '在线MOCK', icon: 'clipboard' }
+        meta: { title: '在线MOCK', icon: 'drag' }
       }
     ]
   },
@@ -114,6 +114,7 @@ export const constantRoutes = [
   {
     path: '/markdown',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -133,7 +134,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/consul/index'),
         name: '健康检查',
-        meta: { title: '健康检查', icon: 'clipboard' }
+        meta: { title: '健康检查', icon: 'eye-open' }
       },
       {
         path: 'add_task',
@@ -145,8 +146,21 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/databases',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/databases/index'),
+        name: '数据库比对',
+        meta: { title: '数据库管理', icon: 'star' }
+      }
+    ]
+  },
+  {
     path: '/testManager',
     component: Layout,
+    hidden: true,
     redirect: 'noRedirect',
     meta: { title: '测试用例', icon: 'el-icon-s-help' },
     children: [
