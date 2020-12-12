@@ -10,14 +10,31 @@ export default {
         name: 'root',
         password: '123456',
         bases: 'test',
-        sql: 'show databases'
-      }
+        sql: ''
+      },
+      databases:'',
+      dataform:'',
+      options: []
     }
   },
   methods: {
     getDatabases() {
+      this.form.sql = 'show databases',
+      this.getSqlData()
+    },
+    getDataform() {
+      this.form.bases = this.databases,
+      this.form.sql = 'show tables',
+      this.getSqlData()
+    },
+    getCreateSql() {
+      this.form.bases = this.databases,
+      this.form.sql = 'show CREATE table '+ this.dataform,
+      this.getSqlData()
+    },
+    getSqlData() {
       getdatabases(this.form).then(rsp => {
-        this.tableData = rsp.data
+        this.options = rsp.data
       }).catch(e => {
         console.info(e)
       })
