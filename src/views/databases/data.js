@@ -9,12 +9,13 @@ export default {
         port: '3306',
         name: 'root',
         password: '123456',
-        bases: 'test',
+        bases: '',
         sql: ''
       },
       databases:'',
       dataform:'',
-      options: []
+      options: [],
+      dialogFormVisible: false
     }
   },
   methods: {
