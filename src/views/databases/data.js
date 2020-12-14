@@ -12,8 +12,8 @@ export default {
         bases: '',
         sql: ''
       },
-      databases:'',
-      dataform:'',
+      databases: '',
+      dataform: '',
       options: [],
       dialogFormVisible: false
     }
@@ -30,7 +30,7 @@ export default {
     },
     getCreateSql() {
       this.form.bases = this.databases,
-      this.form.sql = 'show CREATE table '+ this.dataform,
+      this.form.sql = 'show CREATE table ' + this.dataform,
       this.getSqlData()
     },
     getSqlData() {

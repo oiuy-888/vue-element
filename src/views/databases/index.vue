@@ -11,8 +11,8 @@
             v-for="item in options"
             :key="item"
             :label="item"
-            :value="item">
-          </el-option>
+            :value="item"
+          />
         </el-select>
       </el-form-item>
     </el-form>
@@ -28,8 +28,8 @@
             v-for="item in options"
             :key="item"
             :label="item"
-            :value="item">
-          </el-option>
+            :value="item"
+          />
         </el-select>
       </el-form-item>
     </el-form>
@@ -41,16 +41,16 @@
     <el-dialog title="数据库配置" :visible.sync="dialogFormVisible">
       <el-form :model="form" :visible.sync="dialogFormVisible" label-width="100px">
         <el-form-item label="IP">
-          <el-input v-model="form.ip" placeholder="地址"></el-input>
+          <el-input v-model="form.ip" placeholder="地址" />
         </el-form-item>
         <el-form-item label="PORT">
-          <el-input v-model="form.port" placeholder="端口"></el-input>
+          <el-input v-model="form.port" placeholder="端口" />
         </el-form-item>
         <el-form-item label="ACCOUNT">
-          <el-input v-model="form.name" placeholder="账户"></el-input>
+          <el-input v-model="form.name" placeholder="账户" />
         </el-form-item>
         <el-form-item label="POSSWORD">
-          <el-input v-model="form.password" placeholder="密码"></el-input>
+          <el-input v-model="form.password" placeholder="密码" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
