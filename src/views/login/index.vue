@@ -127,9 +127,9 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
+              window.location.href = `http://test.ssa.jd.com/sso/login?ReturnUrl=${encodeURIComponent(window.location.href)}`
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
-              window.location.href = `http://test.ssa.jd.com/sso/login?ReturnUrl=http://localhost:9527/`
             })
             .catch(() => {
               this.loading = false

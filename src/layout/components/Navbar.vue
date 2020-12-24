@@ -64,7 +64,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      window.location.href = `http://test.ssa.jd.com/sso/login`
     }
   }
 }
