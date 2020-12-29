@@ -39,10 +39,7 @@ export default {
         title: '查询数据库信息',
         tiptitle: ['查询数据库信息', '查询数据表信息', '查询表结构']
       },
-      databases: '',
-      dataform: '',
-      options: [],
-      dialogFormVisible: false
+      options: []
     }
   },
   methods: {
@@ -57,7 +54,7 @@ export default {
     getSqlData() {
           getdatabases(this.form).then(rsp => {
             this.options = rsp.data
-            this.$router.push({ path: '/databases/steptwo'})
+            this.$router.push({ path: "/databases/steptwo" ,query:{options:rsp.data}});
           }).catch(e => {
             console.info(e)
           })

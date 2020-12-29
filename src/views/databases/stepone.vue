@@ -17,7 +17,7 @@
             <el-input v-model="form.password" placeholder="密码" />
           </el-form-item>
           <div align="center">
-            <el-button type="primary" @click="getDatabases()">确 定</el-button>
+            <el-button type="primary" @click="getDatabases()">下一步</el-button>
           </div>
         </el-form>
       </div>

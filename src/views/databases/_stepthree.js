@@ -16,38 +16,18 @@ export default {
         bases: '',
         sql: ''
       },
-      rules: {
-        check: [
-          {required: true, message: '不能为空', trigger: 'blur'},
-          {min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'change'}
-        ],
-        ip: [
-          {required: true, message: '不能为空', trigger: 'blur'},
-          {min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur'}
-        ],
-        port: [
-          {required: true, message: '不能为空', trigger: 'blur'},
-          {min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur'}
-        ],
-        name: [
-          {required: true, message: '不能为空', trigger: 'blur'},
-          {min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur'}
-        ],
-        password: [
-          {required: true, message: '不能为空', trigger: 'blur'},
-          {min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur'}
-        ]
-      },
       stepsObj: {
-        active: 0,
-        title: '查询数据库信息',
+        active: 2,
+        title: '查询表结构',
         tiptitle: ['查询数据库信息', '查询数据表信息', '查询表结构']
       },
-      databases: '',
-      dataform: '',
-      options: [],
-      dialogFormVisible: false
+      dataform:'',
+      options: []
     }
+  },
+  created() {
+    this.options = this.$route.query.options;
+    console.log(this.options)
   },
   methods: {
     getDatabases() {
@@ -57,6 +37,7 @@ export default {
     getSqlData() {
       getdatabases(this.form).then(rsp => {
         this.options = rsp.data
+
       }).catch(e => {
         console.info(e)
       })
