@@ -110,3 +110,11 @@ export function getdatabases(data) {
   })
 }
 
+export function getdatabasesnew(data) {
+  return request({
+    url: '/back-end/sql/basesnew',
+    method: 'post',
+    data
+  })
+}
+

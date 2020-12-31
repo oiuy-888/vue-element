@@ -17,27 +17,27 @@ export default {
         sql: ''
       },
       stepsObj: {
-        active: 1,
-        title: '查询库',
+        active: 3,
+        title: '完成',
         tiptitle: ['数据库连接', '查询库', '查询表', '完成']
       },
-      databases: '',
+      dataform:'',
       options: []
     }
   },
   created() {
-    this.options = this.$route.query.options,
-    this.form = this.$route.query.form
+    this.options = this.$route.query.options;
+    console.log(this.options)
   },
   methods: {
     getDatabases() {
-      this.form.bases = this.databases,
-      this.form.sql = 'show tables',
+      this.form.sql = 'show databases',
       this.getSqlData()
     },
     getSqlData() {
-        getdatabases(this.form).then(rsp => {
-        this.$router.push({ path: "/databases/stepthree" ,query:{options:rsp.data,form:this.form}});
+      getdatabases(this.form).then(rsp => {
+        this.options = rsp.data
+
       }).catch(e => {
         console.info(e)
       })

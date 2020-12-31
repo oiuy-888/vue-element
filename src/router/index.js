@@ -148,7 +148,7 @@ export const constantRoutes = [
   {
     path: '/databases',
     component: Layout,
-    redirect: 'noRedirect',
+    redirect: '/databases/index',
     meta: { title: '数据库管理', icon: 'el-icon-s-help' },
     children: [
       {
@@ -161,21 +161,28 @@ export const constantRoutes = [
         path: 'stepone',
         hidden: true,
         component: () => import('@/views/databases/stepone'),
-        name: '数据库比对1',
+        name: '数据库引导一',
         meta: { title: '数据库管理', icon: 'star' }
       },
       {
         path: 'steptwo',
         hidden: true,
         component: () => import('@/views/databases/steptwo'),
-        name: '数据库比对2',
+        name: '数据库引导二',
         meta: { title: '数据库管理', icon: 'star' }
       },
       {
         path: 'stepthree',
         hidden: true,
         component: () => import('@/views/databases/stepthree'),
-        name: '数据库比对3',
+        name: '数据库引导三',
+        meta: { title: '数据库管理', icon: 'star' }
+      },
+      {
+        path: 'stepfour',
+        hidden: true,
+        component: () => import('@/views/databases/stepfour'),
+        name: '数据库引导四',
         meta: { title: '数据库管理', icon: 'star' }
       }
     ]

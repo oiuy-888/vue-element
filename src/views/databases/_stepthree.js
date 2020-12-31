@@ -1,4 +1,4 @@
-import { getdatabases } from '@/api/qiniu'
+import { getdatabases,getdatabasesnew } from '@/api/qiniu'
 import steps from '@/components/steps'
 
 export default {
@@ -9,35 +9,34 @@ export default {
     return {
       tableData: [],
       form: {
-        ip: '127.0.0.1',
-        port: '3306',
-        name: 'root',
-        password: '123456',
+        ip: '',
+        port: '',
+        name: '',
+        password: '',
         bases: '',
         sql: ''
       },
       stepsObj: {
         active: 2,
-        title: '查询表结构',
-        tiptitle: ['查询数据库信息', '查询数据表信息', '查询表结构']
+        title: '查询表',
+        tiptitle: ['数据库连接', '查询库', '查询表', '完成']
       },
       dataform:'',
       options: []
     }
   },
   created() {
-    this.options = this.$route.query.options;
-    console.log(this.options)
+    this.options = this.$route.query.options,
+    this.form = this.$route.query.form
   },
   methods: {
     getDatabases() {
-      this.form.sql = 'show databases',
+      this.form.sql = 'show CREATE table ' + this.dataform,
       this.getSqlData()
     },
     getSqlData() {
-      getdatabases(this.form).then(rsp => {
-        this.options = rsp.data
-
+      getdatabasesnew(this.form).then(rsp => {
+        this.$router.push({ path: "/databases/stepfour" ,query:{options:rsp.data}});
       }).catch(e => {
         console.info(e)
       })
