@@ -1,31 +1,40 @@
 <template>
-  <div class="options">
+  <div>
     <steps v-bind="stepsObj" />
 
-    <div class="table">
-      <el-table
-        :data="options"
-        :border="true"
-        style="width: 100%"
-      >
-      <el-table-column
-        label="序号"
-        type="index"
-        align="center"
-        width="50"
-      />
-      <el-table-column
-        label="SQL"
-        prop=""
-        resizable
-        :show-tooltip-when-overflow="true"
-        min-width="120%"
-      />
-      </el-table>
+    <div align="center" width="80%">
+      <div class="table">
+        <el-table
+          :data="options"
+          :border="true"
+          style="width: 80%; margin-bottom: 80px;"
+        >
+          <el-table-column
+            label="序号"
+            type="index"
+            align="center"
+            width="50"
+          />
+          <el-table-column
+            label="Form"
+            prop="dataform"
+            resizable
+            :show-tooltip-when-overflow="true"
+            min-width="20%"
+          />
+          <el-table-column
+            label="Sql"
+            prop="datasql"
+            resizable
+            :show-tooltip-when-overflow="true"
+            min-width="120%"
+          />
+        </el-table>
+      </div>
     </div>
 
     <div align="center">
-      <el-button type="primary" @click="getDatabases()">下一步</el-button>
+      <el-button type="primary" @click="over()">保存</el-button>
     </div>
   </div>
 </template>

@@ -1,23 +1,23 @@
 <template>
-  <div class="tableDate">
+  <div>
     <steps v-bind="stepsObj" />
 
     <div style="text-align: center; padding: 40px">
-        <div style="text-align: center; margin-bottom: 30px">
-          请选择表
-        </div>
-        <el-form ref="form" :model="form">
-          <el-form-item>
-            <el-select v-model="dataform" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item"
-                :label="item"
-                :value="item"
-              />
-            </el-select>
-          </el-form-item>
-        </el-form>
+      <div style="text-align: center; margin-bottom: 30px">
+        请选择表
+      </div>
+      <el-form ref="form" :model="form">
+        <el-form-item>
+          <el-select v-model="dataform" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item"
+              :label="item"
+              :value="item"
+            />
+          </el-select>
+        </el-form-item>
+      </el-form>
     </div>
     <div align="center">
       <el-button type="primary" @click="getDatabases()">下一步</el-button>
