@@ -27,8 +27,22 @@
             prop="datasql"
             resizable
             :show-tooltip-when-overflow="true"
-            min-width="120%"
+            min-width="80%"
           />
+          <el-table-column
+            label="操作"
+            align="center"
+            min-width="15%"
+          >
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              v-clipboard:copy="scope.row.datasql"
+              v-clipboard:success="onCopy"
+              v-clipboard:error="onError"
+            >复制</el-button>
+          </template>
+          </el-table-column>
         </el-table>
       </div>
     </div>

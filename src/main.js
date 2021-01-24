@@ -19,6 +19,8 @@ import './permission' // permission control
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
+import VueClipboard from 'vue-clipboard2' // 复制内容到剪切板
+Vue.use(VueClipboard)
 
 import VueResource from 'vue-resource' // add by ls
 Vue.use(VueResource)

@@ -22,6 +22,12 @@ export default {
   methods: {
     over() {
       this.$router.push({ path: '/databases/index' })
+    },
+    onCopy (e) {
+       this.$message.success("内容已复制到剪切板！")
+    },
+    onError (e) {
+       this.$message.error("抱歉，复制失败！")
     }
   }
 
