@@ -118,3 +118,11 @@ export function getdatabasesnew(data) {
   })
 }
 
+export function savedatabases(data) {
+  return request({
+    url: '/back-end/sql/addbases',
+    method: 'post',
+    data
+  })
+}
+

@@ -1,4 +1,4 @@
-import { getdatabases } from '@/api/qiniu'
+import { getdatabases,savedatabases } from '@/api/qiniu'
 import steps from '@/components/steps'
 
 export default {
@@ -33,6 +33,7 @@ export default {
     getDatabases() {
       this.form.bases = this.databases,
       this.form.sql = 'show tables',
+      this.saveDatas()
       this.getSqlData()
     },
     getSqlData() {
@@ -41,7 +42,14 @@ export default {
       }).catch(e => {
         console.info(e)
       })
-    }
+    },
+    saveDatas() {
+            savedatabases(this.form).then(rsp => {
+            //nothing
+          }).catch(e => {
+            console.info(e)
+          })
+        }
   }
 
 }
