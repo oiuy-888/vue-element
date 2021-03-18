@@ -126,3 +126,11 @@ export function savedatabases(data) {
   })
 }
 
+export function saveformsql(data) {
+  return request({
+    url: '/back-end/sql/addformsql',
+    method: 'post',
+    data
+  })
+}
+

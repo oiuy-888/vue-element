@@ -1,4 +1,5 @@
 import steps from '@/components/steps'
+import { saveformsql } from '@/api/qiniu'
 
 export default {
   components: {
@@ -7,12 +8,18 @@ export default {
   data() {
     return {
       tableData: [],
+      sqldata: {
+        form: '',
+        sql: '',
+        version: ''
+      },
       stepsObj: {
         active: 3,
         title: '完成',
         tiptitle: ['数据库连接', '查询库', '查询表', '完成']
       },
-      options: []
+      options: [],
+      dialogFormVisible: false
     }
   },
   created() {
@@ -20,6 +27,18 @@ export default {
     console.log(this.options)
   },
   methods: {
+    setFormsql(index, row) {
+      this.sqldata.version='',
+      this.sqldata.form=row.dataform,
+      this.sqldata.sql=row.datasql
+    },
+    saveFormsql() {
+      saveformsql(this.sqldata).then(rsp => {
+        this.$message(rsp.message)
+      }).catch(e => {
+        console.info(e)
+      })
+    },
     over() {
       this.$router.push({ path: '/databases/index' })
     },

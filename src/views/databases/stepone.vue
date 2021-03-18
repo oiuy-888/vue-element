@@ -14,7 +14,7 @@
           <el-input v-model="form.name" placeholder="账户" />
         </el-form-item>
         <el-form-item label="POSSWORD" prop="password">
-          <el-input v-model="form.password" placeholder="密码" />
+          <el-input type="password" v-model="form.password" placeholder="密码" />
         </el-form-item>
         <div align="center">
           <el-button type="primary" @click="getDatabases()">下一步</el-button>

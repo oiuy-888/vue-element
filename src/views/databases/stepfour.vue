@@ -20,7 +20,7 @@
             prop="dataform"
             resizable
             :show-tooltip-when-overflow="true"
-            min-width="20%"
+            min-width="5%"
           />
           <el-table-column
             label="Sql"
@@ -41,6 +41,11 @@
               v-clipboard:success="onCopy"
               v-clipboard:error="onError"
             >复制</el-button>
+            <el-button
+              size="mini"
+              @click="dialogFormVisible = true"
+              @click.prevent="setFormsql(scope.$index, scope.row)"
+            >保存</el-button>
           </template>
           </el-table-column>
         </el-table>
@@ -48,8 +53,20 @@
     </div>
 
     <div align="center">
-      <el-button type="primary" @click="over()">保存</el-button>
+      <el-button type="primary" @click="over()">完成</el-button>
     </div>
+
+    <el-dialog title="版本号" :visible.sync="dialogFormVisible">
+      <el-form :model="sqldata">
+        <el-form-item label="version" :label-width="formLabelWidth">
+          <el-input v-model="sqldata.version" autocomplete="off" placeholder="版本号" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false" @click.prevent="saveFormsql()">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
